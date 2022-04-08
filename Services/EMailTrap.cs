@@ -24,10 +24,10 @@ public class EMailTrap : IEmailSender
         msg.Body = body.ToMessageBody();
 
         using SmtpClient client = new();
-        //await client.ConnectAsync(Configuration["Email:Server:host"], int.Parse(Configuration["Email:Server:port"]), false);
-        //await client.AuthenticateAsync(Configuration["Email:Server:username"], Configuration["Email:Server:password"]);
-        await client.ConnectAsync("smtp.mailtrap.io", 587, false);
-        await client.AuthenticateAsync("7fb5984619de0a", "da9a3a148fab54");
+        await client.ConnectAsync(Configuration["Email:Server:host"], int.Parse(Configuration["Email:Server:port"]), false);
+        await client.AuthenticateAsync(Configuration["Email:Server:username"], Configuration["Email:Server:password"]);
+        // await client.ConnectAsync("smtp.mailtrap.io", 587, false);
+        //await client.AuthenticateAsync("7fb5984619de0a", "da9a3a148fab54");
         await client.SendAsync(msg);
         await client.DisconnectAsync(true);
 
